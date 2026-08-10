@@ -1,0 +1,22 @@
+name: Remote Debug with sshx
+
+on: 
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
+
+jobs:
+  debug-session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 99999999999999
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install and Start sshx
+        run: |
+          # Download and install sshx
+          curl -sSf https://sshx.io/get | sh
+          
+          # Start the session
+          # This will output a unique URL to the GitHub logs
+          sshx
+          
